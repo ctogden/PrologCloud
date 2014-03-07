@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prolog Code Editor</title>
+
+        <script src="../codemirror/codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="../codemirror/codemirror/lib/codemirror.css">
+        <script src="../codemirror/codemirror/mode/javascript/javascript.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                var myCodeMirror = CodeMirror(document.body, {
+                    value: "Click here to start coding.\n",
+                    mode:  "javascript"
+                });
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
