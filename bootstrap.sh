@@ -2,11 +2,15 @@
 
 sudo apt-get update
 sudo apt-get install -y vim
+sudo apt-get install -y openjdk-7-jre
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386
+export PATH=${PATH}:${JAVA_HOME}/bin
 
 # run Swish on Apache (localhost:8080 on local machine)
 sudo apt-get install -y apache2
 rm -rf /var/www
-ln -fs /vagrant/swish/www /var/www
+ln -fs /vagrant/pyfront /var/www
+ln -fs /vagrant/javaback/ /var/www
 
 # install XSB
 sudo apt-get install -y make
