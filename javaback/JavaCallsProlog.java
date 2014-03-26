@@ -3,7 +3,7 @@ import com.declarativa.interprolog.*;
 
 public class JavaCallsProlog {
     public static String[] resultsFromProlog(String goal){
-        XSBSubprocessEngine engine = new XSBSubprocessEngine("/usr/bin/XSB/bin/xsb",false,true);
+        XSBSubprocessEngine engine = new XSBSubprocessEngine("/usr/bin/XSB/config/i686-pc-linux-gnu/bin/xsb",false,true);
         File f = new File("prolog/test2.pl");
         //engine.consultRelative("test2.pl",null);
         engine.consultAbsolute(f);

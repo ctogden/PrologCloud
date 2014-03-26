@@ -2,7 +2,7 @@
 
 sudo apt-get update
 sudo apt-get install -y vim
-sudo apt-get install -y openjdk-7-jre
+sudo apt-get install -y openjdk-7-jdk
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386
 export PATH=${PATH}:${JAVA_HOME}/bin
 
@@ -21,3 +21,6 @@ tar -vxzf xsb.tar.gz
 cd XSB/build
 sudo ./configure
 sudo ./makexsb
+
+# not very secure
+sudo chmod -R 777 /usr/bin/XSB
