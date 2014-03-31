@@ -6,8 +6,8 @@ sudo apt-get install -y openjdk-7-jdk
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386
 export PATH=${PATH}:${JAVA_HOME}/bin
 
-# run Swish on Apache (localhost:8080 on local machine)
-sudo apt-get install -y apache2
+# We'll use nginx as our server
+sudo apt-get install -y nginx
 rm -rf /var/www
 ln -fs /vagrant/pyfront /var/www
 ln -fs /vagrant/javaback/ /var/www
@@ -22,5 +22,15 @@ cd XSB/build
 sudo ./configure
 sudo ./makexsb
 
+# install python libs
+sudo apt-get install -y python-pip
+sudo pip install flask
+sudo pip install py4j
+sudo apt-get install -y gunicorn
+
 # not very secure
 sudo chmod -R 777 /usr/bin/XSB
+
+# start in web directory
+cd /var/www
+
