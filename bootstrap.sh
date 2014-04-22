@@ -31,6 +31,3 @@ sudo apt-get install -y gunicorn
 # not very secure
 sudo chmod -R 777 /usr/bin/XSB
 
-# start in web directory
-cd /var/www
-

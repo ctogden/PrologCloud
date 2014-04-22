@@ -1,5 +1,82 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+    html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        overflow: hidden;
+    }
+    
+    #editor { 
+        margin: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 720px;
+    }
 
-{% block body %}
-<p>{{message}}</p>
-{% endblock %}
+    #control-pane {
+        margin: 0;
+        padding: 12px;
+        padding-top: 8px;
+        min-width: 100%;
+        min-height: 100%;
+        left: 720px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: relative;
+        float: left;
+        background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+<pre id="editor">/* Sample Prolog code */
+parent(abraham,ismael).
+parent(abraham,isaac).
+parent(isaac,esau).
+parent(isaac,jacob).
+grandfather(B,N):- parent(B,P),parent(P,N).</pre>
+
+<div id="control-pane">
+    <h1>PrologCloud</h1>
+    <h2>Write and execute XSB Prolog code from your browser</h2>   
+    <form action="javascript:void(0);" method="POST">
+        <textarea id="query"></textarea>
+        <input id="query_button" type="submit" value="Get result!">
+    </form>
+    <form action="javascript:void(0);" method="POST">
+        <textarea id="result"></textarea>
+    </form>
+</div>
+    
+<script src="static/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/prolog");
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#query_button").click( function(){
+        $.post( "_xsb", { goal: $("#query").val() }, function( data ) {
+            $( "#result" ).text( data["prolog_results"] );
+        });
+    });
+});
+</script>
+
+</body>
+</html>
